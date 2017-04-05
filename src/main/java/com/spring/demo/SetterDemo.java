@@ -9,22 +9,22 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 
-import com.spring.Address;
-import com.spring.Customer;
-import com.spring.Temp;
+import com.spring.setter.Address;
+import com.spring.setter.Customer;
+import com.spring.setter.Temp;
 
-public class Demo {
+public class SetterDemo {
 	
 	public static void main(String[] args) {
-		Demo demo = new Demo();
-		//demo.usingApplicationContext();
+		SetterDemo demo = new SetterDemo();
+		demo.usingApplicationContext();
 		demo.usingBeanFactory();
 	}
 	private void usingBeanFactory() {
 		Resource resource=null;
-		//resource=new ClassPathResource("spring-beans.xml");
+		resource=new ClassPathResource("setter-beans.xml");
 		
-		resource=new FileSystemResource("D:/core java/Spring2.5DIExample/src/main/resources/spring-beans.xml");
+		//resource=new FileSystemResource("D:/core java/Spring2.5DIExample/src/main/resources/setter-beans.xml");
 		
 		BeanFactory factory = new XmlBeanFactory(resource);
 		
@@ -41,24 +41,24 @@ public class Demo {
 		System.out.println("printing overriden values.");
 		System.out.println(customer.getcId() + " , " + customer.getcName() + " , " + customer.getAddress() );
 	}
-	private void usingApplicationContext(){
+	private void usingApplicationContext(){ 
 
 		ApplicationContext context =null;
 		
 		//loading xml using ClassPathXmlApplicationContext.
-		context=new ClassPathXmlApplicationContext("spring-beans.xml");
+		context=new ClassPathXmlApplicationContext("setter-beans.xml");
 		//if we have multiple xml files we can configured as below.
-		context=new ClassPathXmlApplicationContext(new String[] {"spring-beans.xml","beans2.xml"});
+		context=new ClassPathXmlApplicationContext(new String[] {"setter-beans.xml","beans2.xml"});
 		
 		//loading xml using FileSystemXmlApplicationContext.
-		//context=new FileSystemXmlApplicationContext("D:/core java/Spring2.5DIExample/src/main/resources/spring-beans.xml");
+		//context=new FileSystemXmlApplicationContext("D:/core java/Spring2.5DIExample/src/main/resources/setter-beans.xml");
 		
 		Customer customer = (Customer) context.getBean("customer");
 		Address address=(Address) context.getBean("addr");
 		Temp temp =(Temp) context.getBean("temp");
 		System.out.println("temp= "  +  temp);
 		
-		System.out.println("printing values declred in spring-beans.xml");
+		System.out.println("printing values declred in setter-beans.xml");
 		System.out.println(customer.getcId() + " , " + customer.getcName() + " , " + customer.getAddress() );
 		
 		customer.setcId(1234);
