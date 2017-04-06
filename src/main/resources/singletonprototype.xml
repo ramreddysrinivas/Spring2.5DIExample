@@ -1,9 +1,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://www.springframework.org/schema/beans
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
-<bean id="singletonClass" class="com.spring.singletonprototype.SingletonClass" scope="singleton">
-</bean>
-<bean id="prototypeClass" class="com.spring.singletonprototype.PrototypeClass" scope="prototype">
-</bean>
+	<bean id="singletonClass" class="com.spring.singletonprototype.SingletonClass" scope="singleton">
+	</bean>
+	<bean id="prototypeClass" class="com.spring.singletonprototype.PrototypeClass" scope="prototype">
+	</bean>
+	<bean id="prototypeBaseClassObj" class="com.spring.prototypebase.singletondependent.PrototypeBaseClass" scope="prototype">
+		<property name="singletonDependentClass" ref="singletonDependentClassObj"/>
+	</bean>
+	<bean id="singletonDependentClassObj" class="com.spring.prototypebase.singletondependent.SingletonDependentClass"/>
 </beans>
